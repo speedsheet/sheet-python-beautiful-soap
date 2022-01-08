@@ -1,0 +1,65 @@
+# <#>Beautiful Soap<> SpeedSheet
+<b>Find what you need, faster.<>
+
+<*>Use <b>Search<> to Find Answers Fast (above)
+Answers Get Right To The Point
+Covers The <b>Beautiful Soap HTML Parsing Library<> for Python<>
+
+
+
+# Online Links
+
+
+### Beautiful Soap Documents
+<l>https://www.crummy.com/software/BeautifulSoup/<>
+
+<l>https://beautiful-soup-4.readthedocs.io/en/latest/<>
+
+
+
+### Beautiful Soap Library on PyPi
+<l>https://pypi.org/project/beautifulsoup4/<>
+
+
+
+### <m>Tutorial<>
+
+Web Scraping Example:
+<l>https://pythonprogramming.net/introduction-scraping-parsing-beautiful-soup-tutorial/<>
+
+Stack Abuse:
+<l>https://stackabuse.com/guide-to-parsing-html-with-beautifulsoup-in-python/<>
+
+
+
+# Library
+
+
+## Install Library - pip
+
+<cb>pip install beautifulsoup4<>
+@
+@ command, commandline
+
+
+
+## Install Library - pip requirements.txt
+
+requirements.txt:
+
+<cb>beautifulsoup4<>
+
+Command:
+
+<cb>pip install -r requiremets.txt<>
+@
+@ command, commandline
+
+
+
+## Program - Import
+
+<cb>from bs4 import BeautifulSoap<>
+
+
+
