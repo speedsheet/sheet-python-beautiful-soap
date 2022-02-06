@@ -8,7 +8,7 @@ https://speedsheet.io/s/beautiful_soap
 
 # Status
 
-Content: Just getting started.
+Content: Most of the basics.
 
 
 # Contribute
