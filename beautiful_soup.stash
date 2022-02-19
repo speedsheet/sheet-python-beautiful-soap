@@ -60,9 +60,25 @@ Command:
 <cb>from urllib.request import urlopen
 from bs4 import BeautifulSoup
 
-with urlopen('<v>https://google.com<>') as <v>response<>:
+<v>url<> = '<v>https://google.com<>'
+
+with urlopen(<v>url<>) as <v>response<>:
 	<v>content<> = <v>response<>.read()
 
+<v>soup<> = BeautifulSoup(<v>content<>, 'html.parser')
+
+print(<v>soup<>.title)<>
+
+
+
+### Read Google / Using Requests
+
+<cb>from bs4 import BeautifulSoup
+import requests
+
+<v>url<> = '<v>https://google.com<>'
+
+<v>content<> = requests.get(<v>url<>).text
 <v>soup<> = BeautifulSoup(<v>content<>, 'html.parser')
 
 print(<v>soup<>.title)<>
@@ -182,21 +198,21 @@ Returns all page links.
 
 ### Page - Find By Element Type
 
-<cb>= <v>soup<>.find(<v>element_type<>)<>
+<cb>= <v>soup<>.find('<v>element_type<>'')<>
 @
 @ .find()
 
 
 ### Page - Find By Class Name
 
-<cb>= <v>soup<>.find(_class = <v>class_name<>)<>
+<cb>= <v>soup<>.find(_class = '<v>class_name<>'')<>
 @
 @ .find()
 
 
 ### Page - Find By ID
 
-<cb>= <v>soup<>.find(id = <v>id<>)<>
+<cb>= <v>soup<>.find(id = '<v>id<>'')<>
 @
 @ .find()
 
@@ -213,14 +229,14 @@ Returns all sub-elements.
 
 ### Page - Find All By Element Type
 
-<cb>= <v>soup<>.find_all(<v>element_type<>)<>
+<cb>= <v>soup<>.find_all('<v>element_type<>'')<>
 @
 @ .find_all()
 
 
 ### Page - Find All By Class Name
 
-<cb>= <v>soup<>.find_all(_class = <v>class_name<>)<>
+<cb>= <v>soup<>.find_all(_class = '<v>class_name<>')<>
 @
 @ .find_all()
 
@@ -317,21 +333,21 @@ or
 
 ### Element - Find By Element Type
 
-<cb>= <v>element<>.find(<v>element_type<>)<>
+<cb>= <v>element<>.find('<v>element_type<>'')<>
 @
 @ .find()
 
 
 ### Element - Find By Class Name
 
-<cb>= <v>element<>.find(_class = <v>class_name<>)<>
+<cb>= <v>element<>.find(_class = '<v>class_name<>'')<>
 @
 @ .find()
 
 
 ### Element - Find By ID
 
-<cb>= <v>element<>.find(id = <v>id<>)<>
+<cb>= <v>element<>.find(id = '<v>id<>'')<>
 @
 @ .find()
 
