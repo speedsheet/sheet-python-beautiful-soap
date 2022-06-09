@@ -1,20 +1,35 @@
 # <#>Beautiful Soup<> SpeedSheet
-<b>Find what you need, faster.<>
+<b>Find it faster.<>
 
-<*>Use <b>Search<> to Find Answers Fast (above)
-Answers Get Right To The Point
-Covers The <b>Beautiful Soup HTML Parsing Library<> for Python<>
+This is an interactive <b>Beatuiful Soup<> cheat sheet. Beautiful Soup is a Python library for parsing web pages and HTML. Use the search to instantly get answers.
 
 
+<table><col><b>Basic<>
 
-# Online Links
+<*><link "?q=hello+world">Hello World<>
+<link "?q=install-only">Installing<><>
 
+<*><link "?q=parse-only">Parsing<><>
+
+<*><link "?q=online-docs">Online Docs<><><><col>	<><col><b>Page Properties<>
+
+<*><link "?q=page-only">Page<>
+<link "?q=page-properties-only">Page Properties<>
+<link "?q=page-functions-only">Page Functions<><>
+
+<*><link "?q=element-only">Element<>
+<link "?q=element-properties-only">Element Properties<>
+<link "?q=element-functions-only">Element Functions<><><><>
+
+
+# Online Documents
+@
+@ links, online, online-docs-only
 
 ### Beautiful Soup Documents
 <l>https://www.crummy.com/software/BeautifulSoup/<>
 
 <l>https://beautiful-soup-4.readthedocs.io/en/latest/<>
-
 
 ### Beautiful Soup Library on PyPi
 <l>https://pypi.org/project/beautifulsoup4/<>
@@ -28,7 +43,7 @@ Covers The <b>Beautiful Soup HTML Parsing Library<> for Python<>
 
 <cb>pip install beautifulsoup4<>
 @
-@ command, commandline
+@ command, commandline, install-only
 
 
 
@@ -42,7 +57,7 @@ Command:
 
 <cb>pip install -r requiremets.txt<>
 @
-@ command, commandline
+@ command, commandline, install-only
 
 
 
@@ -56,6 +71,9 @@ Command:
 
 
 ### Read Google
+
+Gets the page title for Google's landing page.
+Use Python's internal urllib library to retrieve the page.
 
 <cb>from urllib.request import urlopen
 from bs4 import BeautifulSoup
@@ -73,6 +91,8 @@ print(<v>soup<>.title)<>
 
 ### Read Google / Using Requests
 
+Get the page title for Google's landing page using the <l>requests<> http library:
+
 <cb>from bs4 import BeautifulSoup
 import requests
 
@@ -86,6 +106,8 @@ print(<v>soup<>.title)<>
 
 
 # Parse
+@
+@ parsing, parse-only, parsing-only
 
 
 ### Parse HTML - Using Python's Stock Parser
@@ -145,6 +167,13 @@ pip / requirements.txt
 
 
 # Page
+@
+@ page-only
+
+
+## Page - Properties
+@
+@ page-properties-only
 
 
 ### Page - Body
@@ -196,6 +225,11 @@ Returns all page links.
 <cb>= <v>soup<>.get_text()<>
 
 
+## Page - Functions
+@
+@ page-functions-only
+
+
 ### Page - Find By Element Type
 
 <cb>= <v>soup<>.find('<v>element_type<>'')<>
@@ -243,6 +277,13 @@ Returns all sub-elements.
 
 
 # Element
+@
+@ element-only
+
+
+## Element - Properties
+@
+@ element-properties-only
 
 
 ### Element - Get Name
@@ -329,6 +370,12 @@ or
 <cb>= <v>element<>['id']<>
 @
 @ [], .get()
+
+
+
+## Element - Functions
+@
+@ element-function-only, element-functions-only
 
 
 ### Element - Find By Element Type
