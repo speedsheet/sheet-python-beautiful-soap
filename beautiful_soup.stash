@@ -11,7 +11,14 @@ This is an interactive <b>Beatuiful Soup<> cheat sheet. Beautiful Soup is a Pyth
 
 <*><link "?q=parse-only">Parsing<><>
 
-<*><link "?q=online-docs">Online Docs<><><><col>	<><col><b>Page Properties<>
+<*><link "?q=online-docs">Online Docs<><>
+
+
+<b>Related SpeedSheets<>
+
+<*><l "python">Python<>
+<l "aiohttp">aiohttp<>
+<l "requests">requests<><><><col>	<><col><b>Page Properties<>
 
 <*><link "?q=page-only">Page<>
 <link "?q=page-properties-only">Page Properties<>
@@ -232,21 +239,21 @@ Returns all page links.
 
 ### Page - Find By Element Type
 
-<cb>= <v>soup<>.find('<v>element_type<>'')<>
+<cb>= <v>soup<>.find('<v>element_type<>')<>
 @
-@ .find()
+@ .find(), tag
 
 
 ### Page - Find By Class Name
 
-<cb>= <v>soup<>.find(_class = '<v>class_name<>'')<>
+<cb>= <v>soup<>.find(class_ = '<v>class_name<>')<>
 @
 @ .find()
 
 
 ### Page - Find By ID
 
-<cb>= <v>soup<>.find(id = '<v>id<>'')<>
+<cb>= <v>soup<>.find(id = '<v>id<>')<>
 @
 @ .find()
 
@@ -263,16 +270,16 @@ Returns all sub-elements.
 
 ### Page - Find All By Element Type
 
-<cb>= <v>soup<>.find_all('<v>element_type<>'')<>
+<cb>= <v>soup<>.find_all('<v>element_type<>')<>
 @
 @ .find_all()
 
 
 ### Page - Find All By Class Name
 
-<cb>= <v>soup<>.find_all(_class = '<v>class_name<>')<>
+<cb>= <v>soup<>.find_all(class_ = '<v>class_name<>')<>
 @
-@ .find_all()
+@ .find_all(), tag
 
 
 
@@ -283,7 +290,7 @@ Returns all sub-elements.
 
 ## Element - Properties
 @
-@ element-properties-only
+@ element-properties-only, properties-only
 
 
 ### Element - Get Name
@@ -291,9 +298,12 @@ Returns all sub-elements.
 <cb>= <v>element<>.name<>
 
 
-Returns the name of the element.
+Returns the name (element type) of the element.
+
+For a div element, returns 'div'.
 @
-@ .name
+@ .name, type, tag
+
 
 
 ### Element - Get Text
@@ -313,11 +323,170 @@ Returns the inner text of the element.
 
 
 
+### Element - Get Attribute
+
+<cb>= <v>element<>['<v>attribute<>']<>
+
+or
+
+<cb>= <v>element<>.get('<v>attribute<>')<>
+@
+@ [], .get()
+
+
+
+### Element - Get Attributes
+
+<cb>= <v>element<>.attrs<>
+
+Returns: <c>dict<>
+
+
+Returns a dict of all attribute names.
+@
+@ .attrs, attrs
+
+
+
+### Element - Get Class
+
+<cb>= <v>element<>['class']<>
+
+Returns: <c>list[str]<>
+
+
+Returns an array of all classes for the element.
+
+If only one class, still returns an array.
+If no class, the class attribute is not present.
+
+
+Get Classes If Any:
+
+<cb>def get_classe(<v>element<>):
+	<#>''' Return classes or empty list if none.'''<>
+
+	if 'class' not in <v>element<>.attrs:
+    	return []
+
+	return <v>element<>['class']
+
+<v>classes<> = get_classes(<v>element_1<>)<>
+@
+@ [], .get()
+
+
+
+### Element - Get ID
+
+<cb>= <v>element<>['id']<>
+
+Returns: <c>str<>
+
+
+Returns the element id.
+
+Only Tags (type <c>bs4.element.Tag<>) have ids.
+Tags with no ids will return <c>None<>.
+Non tags will have no id attribute.
+@
+@ [], .get()
+
+
+
+### Element - Has Attribute?
+
+<cb>if '<v>attribute<>' in <v>element<>.attrs:<>
+@
+@ contains?, has, exists, if in
+@ .attrs
+
+
+
+### Element - Has Class?
+
+<cb>= type(<v>item<>) == Tag and 'class' <v>element<>.attr<>
+
+Usage:
+
+<cb>from bs4.element import Tag
+
+= type(<v>item<>) == Tag and 'class' <v>element<>.attr<><>
+
+
+Returns true when the item has a classes attribute.
+
+
+
+### Element - Has Id?
+
+<cb>= type(<v>item<>) == Tag and <v>element<>.id is not None<>
+
+Usage:
+
+<cb>from bs4.element import Tag
+
+= type(<v>item<>) == Tag and 'class' <v>element<>.id is not None<>
+
+
+Returns true when the item has an id attribute.
+
+
+
+### Element - Type
+
+<cb>bs4.element.Tag<>
+
+<cb>from bs4.element import Tag
+
+= type(<v>element<>) == Tag<>
+
+
+Elements are returned as instances of the <c>Tag<> class.
+@
+@ variable
+
+
+
+## Element - Properties - Relative Elements
+@
+@ element-properties-only, properties-only
+
+
 ### Element - Get Children
 
 <cb>= <v>element<>.children<>
+
+Returns: <c>iterator<>
+
+
+Returns all element's direct children.
+
+Includes elements (tags) and non element children.
 @
 @ .children
+
+
+
+### Element - Get Child Elements Only
+
+<cb>= [child for child in <v>element<>.children if type(child) == Tag]<>
+
+Usage:
+
+<cb>from bs4.element import Tag
+
+= [child for child in <v>element<>.children if type(child) == Tag]<>
+
+Returns: <c>list[Tag]<>
+
+
+Returns all direct child elements only.
+
+Non elements are filtered out.
+@
+@ tags
+
 
 
 ### Element - Get Parent
@@ -330,46 +499,26 @@ Returns the parent element of the element.
 @ .parent
 
 
-### Element - Get Attribute
 
-<cb>= <v>element<>['<v>attribute<>']<>
+### Element - Get Sibling - Previous
 
-or
+<cb>= <v>element<>.previous_sibling<>
 
-<cb>= <v>element<>.get('<v>attribute<>')<>
+
+Returns the next sibling element.
 @
-@ [], .get()
+@ .previous_sibling
 
 
-### Element - Get Attributes
 
-<cb>= <v>element<>.attrs<>
+### Element - Get Sibling - Next
 
-(dict of attribute name, values?)
+<cb>= <v>element<>.next_sibling<>
+
+
+Returns the next sibling element.
 @
-@ .attrs, attrs
-
-
-### Element - Attribute - Contains?
-
-<cb>if '<v>attribute<>' in <v>element<>.attrs:<>
-@
-@ has, exists, if in
-@ .attrs
-
-
-### Element - Get Class
-
-<cb>= <v>element<>['class']<>
-@
-@ [], .get()
-
-
-### Element - Get ID
-
-<cb>= <v>element<>['id']<>
-@
-@ [], .get()
+@ .next_sibling
 
 
 
@@ -380,23 +529,26 @@ or
 
 ### Element - Find By Element Type
 
-<cb>= <v>element<>.find('<v>element_type<>'')<>
+<cb>= <v>element<>.find('<v>element_type<>')<>
 @
-@ .find()
+@ .find(), tag
+
 
 
 ### Element - Find By Class Name
 
-<cb>= <v>element<>.find(_class = '<v>class_name<>'')<>
+<cb>= <v>element<>.find(class_ = '<v>class_name<>')<>
 @
 @ .find()
+
 
 
 ### Element - Find By ID
 
-<cb>= <v>element<>.find(id = '<v>id<>'')<>
+<cb>= <v>element<>.find(id = '<v>id<>')<>
 @
 @ .find()
+
 
 
 ### Element - Find All
@@ -409,18 +561,134 @@ Returns all sub-elements.
 @ .find_all()
 
 
+
 ### Element - Find All By Element Type
 
 <cb>= <v>element<>.find_all(<v>element_type<>)<>
 @
-@ .find_all()
+@ .find_all(), tag
+
 
 
 ### Element - Find All By Class Name
 
-<cb>= <v>element<>.find_all(_class = <v>class_name<>)<>
+<cb>= <v>element<>.find_all(class_ = <v>class_name<>)<>
 @
 @ .find_all()
+
+
+
+# How To
+@
+@ how-to
+
+
+
+### Is Element / Tag
+
+<cb>= type(<v>item<>) == Tag<>
+
+Usage:
+
+<cb>from bs4.element import Tag
+
+= type(<v>item<>) == Tag<>
+@
+@ bs4.element.Tag, type()
+
+
+
+### Format HTML
+
+<cb>= soup.prettify()<>
+
+<cb>= <v>element_1<>.prettify()<>
+
+
+Returns formatted HTML with each element on it's own line.
+
+
+Example:
+
+<cb>from bs4 import BeautifulSoup
+
+<v>html<> = '''\<html>\<body>\<table>\<tr>\<td>Item 1\</td>\</tr>\</table>\</body>\</html>'''
+
+<v>soup<> = BeautifulSoup(html, 'html.parser')
+<v>formatted<> = soup.prettify()
+
+print(<v>formatted<>)
+
+<#># Prints:
+\#
+\#   \<html>
+\#    \<body>
+\#     \<table>
+\#      \<tr>
+\#       \<td>
+\#        \Item 1
+\#       \</td>
+\#      \</tr>
+\#     \</table>
+\#    \</body>
+\#   \</html><><>
+
+@
+@ soup.prettify(), .prettify(), pretty, formatted, print, show
+
+
+
+### Table - Parse
+
+<cb><v>data<> = []
+
+<v>table<> = <v>soup<>.find('table', <v>...<>)
+
+for <v>row<> in <v>table<>.find_all('tr'):
+	<v>values<> = [<v>column<>.text.strip() for <v>column<> in <v>row<>.find_all('td')]
+	<v>data<>.append(<v>values<>)<>
+
+With 'tbody':
+
+<cb><v>data<> = []
+
+<v>table<> = <v>soup<>.find('table', <v>...<>)
+<v>body<> = <v>table<>.find('tbody')
+
+for <v>row<> in <v>body<>.find_all('tr'):
+	<v>values<> = [<v>column<>.text.strip() for <v>column<> in <v>row<>.find_all('td')]
+	<v>data<>.append(<v>values<>)<>
+
+
+Extracts the column values in the table into a list of lists.
+
+
+Example:
+
+<cb>from bs4 import BeautifulSoup
+
+<v>html<> = '''\<html>\<body>
+    \<table id="<v>table-1<>">
+        \<tr>\<td>1\</td>\<td>Item 1\</td>\</tr>
+        \<tr>\<td>2\</td>\<td>Item 2\</td>\</tr>
+        \<tr>\<td>3\</td>\<td>Item 3\</td>\</tr>
+    \</table>
+\</body>\</html>'''
+
+<v>soup<> = BeautifulSoup(html, 'html.parser')
+
+<v>data<> = []
+<v>table<> = <v>soup<>.find('table', id='<v>table-1<>')
+for <v>row<> in <v>table<>.find_all('tr'):
+	<v>values<> = [<v>column<>.text.strip() for <v>column<> in <v>row<>.find_all('td')]
+	<v>data<>.append(<v>values<>)
+
+print(<v>data<>)
+
+<#># Prints: [['1', 'Item 1'], ['2', 'Item 2'], ['3', 'Item 3']]<><>
+@
+@ tables, columns, rows, values
+
 
 
 # Terms
